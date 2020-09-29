@@ -16,6 +16,9 @@
           Connect
         </v-btn>
         <v-spacer></v-spacer>
+        <v-btn text rounded v-if="!!installPrompt" @click="installPWA">
+          <v-icon>mdi-download</v-icon>Install
+        </v-btn>
         <v-btn
           rounded
           text
@@ -87,7 +90,14 @@ export default {
       vAxis: { viewWindow: { min: 0 } },
     },
     characteristic: null,
+    installPrompt: null,
   }),
+  beforeCreate() {
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      this.installPrompt = e;
+    });
+  },
   created() {
     const urlParams = new URLSearchParams(window.location.search);
     const size = Number.parseInt(urlParams.get("bufferSize"));
@@ -167,6 +177,17 @@ export default {
           this.chartData.splice(1, 1);
         }
       }
+    },
+    installPWA() {
+      if (!this.installPrompt) {
+        return;
+      }
+      this.installPrompt.prompt();
+      this.installPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === "accepted") {
+          this.installPrompt = null;
+        }
+      });
     },
   },
 };

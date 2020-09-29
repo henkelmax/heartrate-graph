@@ -39,7 +39,7 @@
             elevation="2"
             cols="6"
           >
-            You need to connect to a heart rate device in order to receive data.
+            You need to connect to a heart rate monitor in order to receive data.
             Press the 'Connect' button to scan for Bluetooth devices.
           </v-alert>
           <v-alert

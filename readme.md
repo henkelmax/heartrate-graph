@@ -4,7 +4,7 @@
 
 A simple web app that displays heart rates from Bluetooth Low Energy capable heart rate monitors.
 
-## [Website](https://henkelmax.github.io/gamemap/)
+## [Website](https://henkelmax.github.io/heartrate-graph/)
 
 ## Project setup
 

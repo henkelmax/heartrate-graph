@@ -4,7 +4,11 @@
       <v-toolbar>
         <v-toolbar-title>
           <span>HeartRate</span>
-          <span class="font-weight-light ml-1">Graph</span>
+          <span
+            v-if="!$vuetify.breakpoint.smAndDown"
+            class="font-weight-light ml-1"
+            >Graph</span
+          >
         </v-toolbar-title>
         <v-btn
           class="ml-4"
@@ -20,6 +24,7 @@
           <v-icon>mdi-download</v-icon>Install
         </v-btn>
         <v-btn
+          v-if="!$vuetify.breakpoint.smAndDown"
           rounded
           text
           href="https://github.com/henkelmax/heartrate-graph"
@@ -39,8 +44,8 @@
             elevation="2"
             cols="6"
           >
-            You need to connect to a heart rate monitor in order to receive data.
-            Press the 'Connect' button to scan for Bluetooth devices.
+            You need to connect to a heart rate monitor in order to receive
+            data. Press the 'Connect' button to scan for Bluetooth devices.
           </v-alert>
           <v-alert
             v-else
